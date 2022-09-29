@@ -1,9 +1,11 @@
 // Your code here
-const deleteTask = () =>{
 
+
+const deleteTask = elemento =>{
+ alert("hols")
 }
-const addTask = (valor) =>{
-    alert("Crear elemento")
+const addTask = textoInput =>{
+    //alert("Crear elemento")
     let ul = document.querySelector("ul")
 	let li = document.createElement("li")
 	let span = document.createElement("span")
@@ -12,11 +14,31 @@ const addTask = (valor) =>{
 	ul.appendChild(li) //metemos li dentro de ul
 	li.appendChild(span) //metemos span dentro de li
 	span.appendChild(i) // metemos i dentro de span
-	li.appendChild(document.createTextNode(valor)) //metemos el texto en li
+	li.appendChild(document.createTextNode(textoInput)) //metemos el texto en li
+	eschuchaI() // funcion que escucha los <i>
+	
 }
-let INPUT = document.querySelector("input")
-INPUT.addEventListener("keyup", function(event) {
-    if (event.key === 'Enter') { //si pulsamos enter al cambiar el texto del input
-        addTask(INPUT.value);
+// crear el elemento
+const INPUT = document.querySelector("input")
+INPUT.addEventListener("keyup", pulsaEnter => {
+    if (pulsaEnter.key === 'Enter') { //si pulsamos Enter al cambiar el texto del input
+        addTask(INPUT.value) //añado elemento a la lista	
     }
 })
+// borrar el elemento
+
+
+const eschuchaI = () =>{
+	let losI =document.querySelectorAll("i")
+	console.clear()
+	console.log(losI)
+	
+	Object.keys(losI).forEach(key => {
+		
+		//console.log("onclick" in losI[key] )
+		losI[key].onclick = this.addEventListener("click", deleteTask())
+		//losI[key].onmouseup= deleteTask()
+	})
+	
+}
+window.onload = eschuchaI()
